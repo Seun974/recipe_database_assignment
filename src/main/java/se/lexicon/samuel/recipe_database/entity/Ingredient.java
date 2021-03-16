@@ -1,9 +1,15 @@
 package se.lexicon.samuel.recipe_database.entity;
 
+
+
+import javax.persistence.*;
 import java.util.Objects;
 
-
+@Entity
 public class Ingredient {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private int ingredientId;
     private String ingredientName;
 
