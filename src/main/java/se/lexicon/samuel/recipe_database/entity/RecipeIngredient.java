@@ -2,9 +2,7 @@ package se.lexicon.samuel.recipe_database.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 @Entity
 public class RecipeIngredient {
@@ -12,22 +10,34 @@ public class RecipeIngredient {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name= "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String recipeIngredientId;
-    private Ingredient ingredient;
-    private double amount;
-    private Measurement measurement;
-    private Recipe recipe;
 
-    public RecipeIngredient(String recipeIngredientId, Ingredient ingredient, double amount, Measurement measurement, Recipe recipe) {
+    @ManyToOne(
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}
+    )
+    @JoinColumn(name = "ingredient_id", table = "ingredient")
+    private Ingredient ingredient;
+
+    private double amount;
+
+    private Measurement measurement;
+
+    @ManyToOne(
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}
+    )
+    @JoinColumn(name = "recipe_id", table = "recipes")
+    private Recipe recipes;
+
+    public RecipeIngredient(String recipeIngredientId, Ingredient ingredient, double amount, Measurement measurement, Recipe recipes) {
         this.recipeIngredientId = recipeIngredientId;
         this.ingredient = ingredient;
         this.amount = amount;
         this.measurement = measurement;
-        this.recipe = recipe;
+        this.recipes = recipes;
     }
     //constructor takes only the enum and the Recipe entity
-    public RecipeIngredient(Measurement measurement, Recipe recipe) {
+    public RecipeIngredient(Measurement measurement, Recipe recipes) {
         this.measurement = measurement;
-        this.recipe = recipe;
+        this.recipes = recipes;
     }
 
     public RecipeIngredient() {
@@ -61,12 +71,12 @@ public class RecipeIngredient {
         this.measurement = measurement;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public Recipe getRecipes() {
+        return recipes;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipes(Recipe recipe) {
+        this.recipes = recipe;
     }
 
     @Override

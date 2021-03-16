@@ -2,9 +2,7 @@ package se.lexicon.samuel.recipe_database.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +13,13 @@ public class RecipeInstruction {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String recipeInstructionId;
     private String recipeInstruction;
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+
+    @JoinColumn(name = "recipe_id", table = "recipe_instruction")
+    private Recipe recipe;
 
     public RecipeInstruction(String recipeInstructionId, String recipeInstruction) {
         this.recipeInstructionId = recipeInstructionId;

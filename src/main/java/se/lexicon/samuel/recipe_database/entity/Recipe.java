@@ -2,9 +2,7 @@ package se.lexicon.samuel.recipe_database.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -16,8 +14,26 @@ public class Recipe {
     @GenericGenerator(name= "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private int recipeId;
     private String recipeName;
+
+    @OneToMany(
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.LAZY,
+            mappedBy = "recipe_ingredients"
+    )
     private Collection<RecipeIngredient> recipeIngredients;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(name = "recipe_instruction_id", table = "recipe_instruction")
     private RecipeInstruction recipeInstruction;
+
+    @OneToMany(
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.LAZY,
+            mappedBy = "recipes"
+    )
     private Collection<RecipeCategory>  recipeCategories;
 
     public Recipe(int recipeId, String recipeName, Collection<RecipeIngredient> recipeIngredients, RecipeInstruction recipeInstruction, Collection<RecipeCategory> recipeCategories) {

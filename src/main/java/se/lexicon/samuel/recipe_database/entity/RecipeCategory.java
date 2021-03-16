@@ -11,6 +11,11 @@ public class RecipeCategory {
     @Column(unique = true)
     private int recipeCategoryId;
     private String category;
+
+    @ManyToOne(
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}
+    )
+    @JoinColumn(name = "recipes", table = "recipe_category")
     private Collection<Recipe> recipes;
 
     public RecipeCategory(int recipeCategoryId, String category, List<Recipe> recipes) {
