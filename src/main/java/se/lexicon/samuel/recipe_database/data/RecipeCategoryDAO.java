@@ -1,6 +1,6 @@
 package se.lexicon.samuel.recipe_database.data;
 
-import se.lexicon.samuel.recipe_database.entity.RecipeCategory;
+import se.lexicon.samuel.recipe_database.model.entity.RecipeCategory;
 
 import java.util.Collection;
 

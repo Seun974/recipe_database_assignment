@@ -2,7 +2,7 @@ package se.lexicon.samuel.recipe_database.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import se.lexicon.samuel.recipe_database.entity.Ingredient;
+import se.lexicon.samuel.recipe_database.model.entity.Ingredient;
 
 import javax.persistence.EntityManager;
 import java.util.Collection;

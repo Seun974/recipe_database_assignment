@@ -1,6 +1,7 @@
-package se.lexicon.samuel.recipe_database.entity;
+package se.lexicon.samuel.recipe_database.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import se.lexicon.samuel.recipe_database.model.misc.Measurement;
 
 import javax.persistence.*;
 import java.util.Objects;

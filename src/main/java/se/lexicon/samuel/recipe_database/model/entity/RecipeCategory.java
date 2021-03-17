@@ -1,9 +1,10 @@
-package se.lexicon.samuel.recipe_database.entity;
+package se.lexicon.samuel.recipe_database.model.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+
 @Entity
 public class RecipeCategory {
     @Id
@@ -15,7 +16,7 @@ public class RecipeCategory {
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}
     )
-    @JoinColumn(name = "recipes", table = "recipe_category")
+
     private Collection<Recipe> recipes;
 
     public RecipeCategory(int recipeCategoryId, String category, List<Recipe> recipes) {

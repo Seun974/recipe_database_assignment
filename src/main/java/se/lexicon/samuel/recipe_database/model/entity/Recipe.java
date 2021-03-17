@@ -1,4 +1,4 @@
-package se.lexicon.samuel.recipe_database.entity;
+package se.lexicon.samuel.recipe_database.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,7 +18,7 @@ public class Recipe {
     @OneToMany(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY,
-            mappedBy = "recipe_ingredients"
+            mappedBy = "recipe"
     )
     private Collection<RecipeIngredient> recipeIngredients;
 

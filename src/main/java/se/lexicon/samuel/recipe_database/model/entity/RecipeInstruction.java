@@ -1,4 +1,4 @@
-package se.lexicon.samuel.recipe_database.entity;
+package se.lexicon.samuel.recipe_database.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -13,13 +13,7 @@ public class RecipeInstruction {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String recipeInstructionId;
     private String recipeInstruction;
-    @OneToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
 
-    @JoinColumn(name = "recipe_id", table = "recipe_instruction")
-    private Recipe recipe;
 
     public RecipeInstruction(String recipeInstructionId, String recipeInstruction) {
         this.recipeInstructionId = recipeInstructionId;

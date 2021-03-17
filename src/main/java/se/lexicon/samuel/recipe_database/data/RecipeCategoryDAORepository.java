@@ -2,10 +2,9 @@ package se.lexicon.samuel.recipe_database.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import se.lexicon.samuel.recipe_database.entity.RecipeCategory;
+import se.lexicon.samuel.recipe_database.model.entity.RecipeCategory;
 
 import javax.persistence.EntityManager;
-import javax.persistence.RollbackException;
 import java.util.Collection;
 
 public class RecipeCategoryDAORepository implements RecipeCategoryDAO{

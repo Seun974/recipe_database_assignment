@@ -1,7 +1,7 @@
 package se.lexicon.samuel.recipe_database.data;
 
 import org.springframework.transaction.annotation.Transactional;
-import se.lexicon.samuel.recipe_database.entity.RecipeIngredient;
+import se.lexicon.samuel.recipe_database.model.entity.RecipeIngredient;
 
 import javax.persistence.EntityManager;
 import java.util.Collection;
